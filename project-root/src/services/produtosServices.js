@@ -14,6 +14,7 @@ async function produtosAll() {
             dados: dados[0]
         }
     } catch (erro) {
+        console.log(`erro catch produtosAll ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }
@@ -43,6 +44,7 @@ async function produtosCreate(enabled, nome, slug, use_in_menu, stock, descripti
             dados: produtosCreate.dataValues
         }
     } catch (erro) {
+        console.log(`erro catch produtosCreate ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }
@@ -75,6 +77,7 @@ async function produtosUpdate(id, enabled, nome, slug, use_in_menu, stock, descr
             dados: 'produto atualizado com sucesso'
         }
     } catch (erro) {
+        console.log(`erro catch produtosUpdate ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }
@@ -96,6 +99,7 @@ async function produtosDelete(id) {
             dados: 'produto deletado com sucesso'
         }
     } catch (erro) {
+        console.log(`erro catch produtosDelete ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }

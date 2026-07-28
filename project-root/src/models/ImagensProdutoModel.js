@@ -1,9 +1,9 @@
-const sequelize = require('../config/sequelize')
-const {DataTypes} = require('sequelize')
+const sequelize = require('../config/conexaoBanco')
+const { DataTypes } = require('sequelize')
 
 const produtoModel = require('./ProdutosModel')
 
-const imagensProduto = sequelize.define('imagensproduto', {
+const ImagensProduto = sequelize.define('imagensproduto', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -25,9 +25,9 @@ const imagensProduto = sequelize.define('imagensproduto', {
         type: DataTypes.STRING(2048),
         allowNull: false
     }
-},{
+}, {
     tableName: 'imagensproduto',
     timestamps: false
 })
 
-module.exports = imagensProduto;
+module.exports = ImagensProduto;

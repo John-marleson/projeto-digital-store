@@ -16,6 +16,7 @@ async function usuariosAll() {
             mensagem: 'Requisição get /usuarios foi um sucesso!'
         }
     } catch (erro) {
+        console.log(`erro catch usuarioAll ${erro}`)
         return {
             erro: 'erro interno do sistema'
         }
@@ -44,11 +45,15 @@ async function usuariosCreate(nome, sobrenome, email, senha) {
         })
 
         return {
-            dados: dados.dataValues,
+            dados: {
+                nome: dados.dataValues.nome,
+                sobrenome: dados.dataValues.sobrenome,
+                email: dados.dataValues.sobrenome
+            },
             mensagem: 'Usuario criado com sucesso!'
         }
     } catch (erro) {
-        console.log(erro)
+        console.log(`erro catch usuarioCreate ${erro}`)
         return {
             erro: 'erro interno do sistema'
         }
@@ -84,6 +89,7 @@ async function usuarioUpdate(id, nome, sobrenome, email, senha) {
             }
         }
     } catch (erro) {
+        console.log(`erro catch usuarioUpdate ${erro}`)
         return {
             erro: 'erro interno do sistema'
         }
@@ -111,6 +117,7 @@ async function usuarioDelete(id, senha) {
             }
         }
     } catch (erro) {
+        console.log(`erro catch usuarioDelete ${erro}`)
         return {
             erro: 'erro interno do sistema'
         }

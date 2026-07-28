@@ -15,7 +15,7 @@ async function categoriasAll() {
             dados: dados[0]
         }
     } catch (erro) {
-        console.log(erro)
+        console.log(`erro catch categoriasAll ${erro}`)
         return {
             erro: erro.message
         }
@@ -38,6 +38,7 @@ async function categoriasCreate(nome, slug, use_in_menu) {
             dados: 'Categoria criada com sucesso'
         }
     } catch (erro) {
+        console.log(`erro catch categoriasCreate ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }
@@ -65,6 +66,7 @@ async function categoriasUpdate(id, nome, slug, use_in_menu) {
             dados: 'Categoria atualizado com sucesso'
         }
     } catch (erro) {
+        console.log(`erro catch categoriasUpdate ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }
@@ -86,6 +88,7 @@ async function categoriasDelete(id,) {
             dados: 'sucesso ao deletar categoria'
         }
     } catch (erro) {
+        console.log(`erro catch categoriasDelete ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }

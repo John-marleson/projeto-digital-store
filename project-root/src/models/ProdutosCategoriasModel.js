@@ -1,5 +1,8 @@
+const sequelize = require('../config/conexaoBanco'); 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/sequelize'); 
+
+const CategoriasModel = require('./CategoriasModel')
+const ProdutoModel = require('./ProdutosModel')
 
 const ProdutosCategorias = sequelize.define('ProdutosCategorias', {
     product_id: {
@@ -7,7 +10,7 @@ const ProdutosCategorias = sequelize.define('ProdutosCategorias', {
         allowNull: false,
         primaryKey: true,     
         references: {
-            model: 'produtos',
+            model: ProdutoModel,
             key: 'id'
         }
     },
@@ -16,7 +19,7 @@ const ProdutosCategorias = sequelize.define('ProdutosCategorias', {
         allowNull: false,
         primaryKey: true,      
         references: {
-            model: 'categorias',
+            model: CategoriasModel,
             key: 'id'
         }
     }

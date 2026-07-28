@@ -1,9 +1,9 @@
-const sequelize = require('../config/sequelize')
-const {DataTypes} = require('sequelize')
+const sequelize = require('../config/conexaoBanco')
+const { DataTypes } = require('sequelize')
 
-const produtoModel = require('./ProdutosModel')
+const ProdutoModel = require('./ProdutosModel')
 
-const opcoesProdutos = sequelize.define('opcoesporduto', {
+const OpcoesProdutos = sequelize.define('opcoesporduto', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -13,7 +13,7 @@ const opcoesProdutos = sequelize.define('opcoesporduto', {
         type: DataTypes.INTEGER,
         allowNull: false,
         reference: {
-            Model: produtoModel,
+            Model: ProdutoModel,
             key: 'id'
         }
     },
@@ -38,9 +38,9 @@ const opcoesProdutos = sequelize.define('opcoesporduto', {
         allowNull: false
     }
 },
-{
-    tableName: 'opcoesprodutos',
-    timestamps: false
-})
+    {
+        tableName: 'opcoesprodutos',
+        timestamps: false
+    })
 
-module.exports = opcoesProdutos;
+module.exports = OpcoesProdutos;
