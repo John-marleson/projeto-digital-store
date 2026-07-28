@@ -1,19 +1,20 @@
 const categorias = require('../models/CategoriasModel')
 const { CategoriasModel } = require('../models/relacionamentosModel')
 
-async function categoriasAll () {
-    try{
+async function categoriasAll() {
+    try {
         const dados = await CategoriasModel.findAll()
 
-        if(!dados){
+        if (!dados) {
             return {
                 erro: 'Não foi possivel listar as categorias'
             }
         }
-        
-        console.log(dados)
-        return dados
-    }catch(erro){
+
+        return {
+            dados: dados[0]
+        }
+    } catch (erro) {
         console.log(erro)
         return {
             erro: erro.message
@@ -21,14 +22,14 @@ async function categoriasAll () {
     }
 }
 
-async function categoriasCreate (nome, slug, use_in_menu) {
-    try{
+async function categoriasCreate(nome, slug, use_in_menu) {
+    try {
         const dados = await CategoriasModel.create({
             nome: nome,
             slug: slug,
             use_in_menu: use_in_menu
         })
-        if(!dados){
+        if (!dados) {
             return {
                 erro: 'Falha ao criar a categoria'
             }
@@ -36,56 +37,56 @@ async function categoriasCreate (nome, slug, use_in_menu) {
         return {
             dados: 'Categoria criada com sucesso'
         }
-    }catch(erro){
-        return{
+    } catch (erro) {
+        return {
             erro: 'erro interno do servidor'
         }
     }
 }
 
-async function categoriasUpdate (id, nome, slug, use_in_menu) {
-    try{
+async function categoriasUpdate(id, nome, slug, use_in_menu) {
+    try {
         const categoriaPk = await CategoriasModel.findByPk(id)
 
-        if(!categoriaPk){
+        if (!categoriaPk) {
             return {
                 erro: 'Categoria não encontrada'
             }
         }
 
         const categoriaUpdate = await CategoriasModel.update({
-                nome: nome,
-                slug: slug,
-                use_in_menu: use_in_menu
-            },
-            {where: {id: id}})
+            nome: nome,
+            slug: slug,
+            use_in_menu: use_in_menu
+        },
+            { where: { id: id } })
 
-        return{
+        return {
             dados: 'Categoria atualizado com sucesso'
         }
-    }catch(erro){
-        return{
+    } catch (erro) {
+        return {
             erro: 'erro interno do servidor'
         }
     }
 }
 
-async function categoriasDelete (id, ) {
-    try{
+async function categoriasDelete(id,) {
+    try {
         const categoriaPk = await CategoriasModel.findByPk(id)
 
-        if(!categoriaPk){
+        if (!categoriaPk) {
             return {
                 erro: 'categoria não encontrada'
             }
         }
 
-        const destroy = await CategoriasModel.destroy({where: {id: id}})
-        return{
+        const deleteCategoria = await CategoriasModel.destroy({ where: { id: id } })
+        return {
             dados: 'sucesso ao deletar categoria'
         }
-    }catch(erro){
-        return{
+    } catch (erro) {
+        return {
             erro: 'erro interno do servidor'
         }
     }
