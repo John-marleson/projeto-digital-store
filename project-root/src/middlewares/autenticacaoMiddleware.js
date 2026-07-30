@@ -1,7 +1,7 @@
 require('dotenv').config({path: '../.env'})
 const jwt = require('jsonwebtoken')
 
-async function autenticacaoMiddleware(req, res, next) {
+async function autenticacao(req, res, next) {
     try{
         const token = req.headers.authorization.split(' ')[0]
         const verify = await jwt.verify(token, process.env.PALAVRA_SECRETA_JWT)
@@ -18,4 +18,4 @@ async function autenticacaoMiddleware(req, res, next) {
     }
 }
 
-module.exports = autenticacaoMiddleware
+module.exports = autenticacao
