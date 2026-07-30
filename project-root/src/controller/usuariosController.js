@@ -31,8 +31,7 @@ async function usuarioPost(req, res) {
         const post = await serviceUsuario.usuariosCreate(nome, sobrenome, email, senha)
 
         if (post.erro) {
-            const statusCode = post.erro == 'Email já cadastrado.' ? 400 : 404
-            return res.status(statusCode).json({
+            return res.status(400).json({
                 erro: post.erro
             })
         }

@@ -4,6 +4,6 @@ const rotasUsuario = require('./routers/usuariosRouter')
 
 app.use(express.json())
 
-app.use('/usuarios', rotasUsuario)
+app.use(rotasUsuario)
 
 module.exports = app;
