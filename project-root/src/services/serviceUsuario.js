@@ -48,6 +48,8 @@ async function usuariosCreate(nome, sobrenome, email, senha) {
                 erro: 'erro ao criar usuario'
             }
         }
+
+        
         return {
             dados: {
                 nome: dados.dataValues.nome,
@@ -73,7 +75,7 @@ async function usuarioUpdate(id, nome, sobrenome, email, senha) {
                 erro: 'Usuario não encontrado - ID invalido'
             }
         }
-        const key = usuarioPk.dataValues
+        const key = usuarioPk.dataValues.senha
         const compare = await bcrypt.compare(senha, key)
 
         if (compare) {
@@ -82,10 +84,8 @@ async function usuarioUpdate(id, nome, sobrenome, email, senha) {
                 sobrenome: sobrenome,
                 email: email,
             },
-                { where: { id: id } })
-            return {
-                mensagem: `Usuario de ID n°${id} foi atualizado com sucesso!`
-            }
+            { where: { id: id } })
+            return 
         } else {
             return {
                 erro: 'Usuario ou senha invalidos'

@@ -63,9 +63,7 @@ async function usuarioPut(req, res) {
             })
         }
 
-        return res.status(204).json({
-            dados: put.mensagem
-        })
+        return res.status(204)
     } catch (erro) {
         console.log(`erro no controller ${erro}`)
         return res.status(500).json({
