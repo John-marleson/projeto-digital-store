@@ -5,28 +5,23 @@ const ProdutosCategoriasModel = require('./ProdutosCategoriasModel')
 const ProdutosModel = require('./ProdutosModel')
 const UsuariosModel = require('./UsuariosModel')
 
-ProdutosModel.hasMany(imagensProdutoModel)
-ImagensProdutoModel.belongsTo(produtosModel)
+ProdutosModel.hasMany(ImagensProdutoModel)
+ImagensProdutoModel.belongsTo(ProdutosModel);
 
-OpcoesProdutoModel.hasOne(produtosModel)
-ProdutosModel.hasOne(opcoesProdutoModel)
+ProdutosModel.hasMany(OpcoesProdutoModel);
+OpcoesProdutoModel.belongsTo(ProdutosModel);
 
-ProdutosModel.belongsToMany(categoriasModel, {
-    through: produtosCategoriasModel,
-    foreignKey: 'product_id',
-    otherKey: 'category_id'
-});
-CategoriasModel.belongsToMany(produtosModel, {
-    through: produtosCategoriasModel,
-    foreignKey: 'category_id',
-    otherKey: 'product_id'
-});
+ProdutosModel.belongsToMany(CategoriasModel);
+CategoriasModel.belongsToMany(ProdutosModel);
+
+ProdutosCategoriasModel.belongsTo(ProdutosModel);
+ProdutosCategoriasModel.belongsTo(CategoriasModel);
+ 
 
 module.exports = { 
     CategoriasModel,
     ImagensProdutoModel,
     OpcoesProdutoModel,
-    ProdutosCategoriasModel,
     ProdutosModel,
     CategoriasModel,
     UsuariosModel

@@ -1,20 +1,21 @@
 const { ImagensProdutoModel } = require('../models/RelacionamentosModel')
 
-async function imgAll() {
+async function imgFindAllByProduct(id) {
     try {
-        const imgAll = await ImagensProdutoModel.findAll()
+        const imgAll = await ImagensProdutoModel.findByPk(id)
 
         if (!imgAll) {
             return {
-                erro: 'imagens não encontradas'
+                erro: 'imagens não encontradas',
+                mensagem: 'verifique se o id do produto realmente existe'
             }
         }
 
         return {
-            dados: imgAll[0]
+            dados: imgAll.dataValues
         }
     } catch (erro) {
-        console.log(`erro catch imgProdutoAll ${erro}`)
+        console.log(`erro catch imgProdutoAllByProduct ${erro}`)
         return {
             erro: 'erro interno do servidor'
         }
@@ -103,7 +104,7 @@ async function imgDelete(id) {
 }
 
 module.exports = {
-    imgAll,
+    imgFindAll,
     imgCreate,
     imgUpdate,
     imgDelete

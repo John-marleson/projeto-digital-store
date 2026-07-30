@@ -1,9 +1,9 @@
 const UsuariosModel = require('../models/UsuariosModel')
 const bcrypt = require('bcrypt')
 
-async function usuariosAll() {
+async function usuariosFindById(id) {
     try {
-        const dados = await UsuariosModel.findAll()
+        const dados = await UsuariosModel.findByPk(id)
 
         if (!dados) {
             return {
@@ -12,7 +12,7 @@ async function usuariosAll() {
         }
 
         return {
-            dados: dados[0],
+            dados: dados.dataValues,
             mensagem: 'Requisição get /usuarios foi um sucesso!'
         }
     } catch (erro) {
@@ -28,7 +28,6 @@ async function usuariosCreate(nome, sobrenome, email, senha) {
         const emailEncontrado = await UsuariosModel.findOne({ where: { email: email } })
 
         if (emailEncontrado) {
-            console.log('erro email')
             return {
                 erro: 'Email já cadastrado.'
             }
@@ -44,11 +43,16 @@ async function usuariosCreate(nome, sobrenome, email, senha) {
             senha: keyBcrypt
         })
 
+        if(!dados){
+            return {
+                erro: 'erro ao criar usuario'
+            }
+        }
         return {
             dados: {
                 nome: dados.dataValues.nome,
                 sobrenome: dados.dataValues.sobrenome,
-                email: dados.dataValues.sobrenome
+                email: dados.dataValues.email
             },
             mensagem: 'Usuario criado com sucesso!'
         }
@@ -80,7 +84,6 @@ async function usuarioUpdate(id, nome, sobrenome, email, senha) {
             },
                 { where: { id: id } })
             return {
-                dados: updateUsuario,
                 mensagem: `Usuario de ID n°${id} foi atualizado com sucesso!`
             }
         } else {
@@ -96,7 +99,7 @@ async function usuarioUpdate(id, nome, sobrenome, email, senha) {
     }
 }
 
-async function usuarioDelete(id, senha) {
+async function usuarioDelete(id) {
     try {
         const usuarioPk = await UsuariosModel.findByPk(id)
 
@@ -106,15 +109,10 @@ async function usuarioDelete(id, senha) {
             }
         }
 
-        const key = usuarioPk.dataValues.senha
-        const compare = await bcryp.compare(senha, key)
+        const deleteUsuario = await UsuariosModel.destroy({ where: { id: id } })
 
-        if (compare) {
-            const deleteUsuario = await UsuariosModel.destroy({ where: { id: id } })
-
-            return {
-                dados: 'Usuario deletado'
-            }
+        return {
+            dados: 'Usuario deletado com sucesso'
         }
     } catch (erro) {
         console.log(`erro catch usuarioDelete ${erro}`)
@@ -126,7 +124,7 @@ async function usuarioDelete(id, senha) {
 
 
 module.exports = {
-    usuariosAll,
+    usuariosFindById,
     usuariosCreate,
     usuarioUpdate,
     usuarioDelete

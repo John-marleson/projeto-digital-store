@@ -1,6 +1,7 @@
 const { ProdutosModel } = require('../models/RelacionamentosModel')
+const { ImagensProdutoModel } = require('../models/RelacionamentosModel')
 
-async function produtosAll() {
+async function produtosFindAll() {
     try {
         const dados = await ProdutosModel.findAll()
 
@@ -106,8 +107,12 @@ async function produtosDelete(id) {
     }
 }
 
+async function ImagensProdutoFindAll() {
+    
+}
+
 module.exports = {
-    produtosAll,
+    produtosFindAll,
     produtosCreate,
     produtosDelete,
     produtosUpdate

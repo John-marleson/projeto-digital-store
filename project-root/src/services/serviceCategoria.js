@@ -1,7 +1,7 @@
 const categorias = require('../models/CategoriasModel')
 const { CategoriasModel } = require('../models/relacionamentosModel')
 
-async function categoriasAll() {
+async function categoriasFindAll() {
     try {
         const dados = await CategoriasModel.findAll()
 
@@ -96,7 +96,7 @@ async function categoriasDelete(id,) {
 }
 
 module.exports = {
-    categoriasAll,
+    categoriasFindAll,
     categoriasCreate,
     categoriasDelete,
     categoriasUpdate
