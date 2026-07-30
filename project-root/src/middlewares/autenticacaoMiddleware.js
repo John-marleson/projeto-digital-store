@@ -1,11 +1,11 @@
-require('dotenv').config({path: '../.env'})
+require('dotenv').config({ path: '../.env' })
 const jwt = require('jsonwebtoken')
 
 async function autenticacao(req, res, next) {
-    try{
+    try {
         const token = req.headers.authorization.split(' ')[0]
         const verify = await jwt.verify(token, process.env.PALAVRA_SECRETA_JWT)
-        if(!verify){
+        if (!verify) {
             return res.status(401).json({
                 erro: 'token invalido'
             })
@@ -13,7 +13,7 @@ async function autenticacao(req, res, next) {
 
         req.infoUsuario = verify
         next()
-    }catch(erro){
+    } catch (erro) {
         return res.status(500).json
     }
 }

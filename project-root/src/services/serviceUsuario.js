@@ -43,13 +43,13 @@ async function usuariosCreate(nome, sobrenome, email, senha) {
             senha: keyBcrypt
         })
 
-        if(!dados){
+        if (!dados) {
             return {
                 erro: 'erro ao criar usuario'
             }
         }
 
-        
+
         return {
             dados: {
                 nome: dados.dataValues.nome,
@@ -84,8 +84,8 @@ async function usuarioUpdate(id, nome, sobrenome, email, senha) {
                 sobrenome: sobrenome,
                 email: email,
             },
-            { where: { id: id } })
-            return 
+                { where: { id: id } })
+            return
         } else {
             return {
                 erro: 'Usuario ou senha invalidos'

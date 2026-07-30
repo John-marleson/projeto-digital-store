@@ -20,9 +20,9 @@ async function serviceLogin(email, senha) {
             const token = jwt.sing({
                 email: email,
                 senha: key
-            }, 
-            process.env.SECRET_KEY, 
-            { expiresIn: '1h' })
+            },
+                process.env.SECRET_KEY,
+                { expiresIn: '1h' })
 
             return {
                 token: token,

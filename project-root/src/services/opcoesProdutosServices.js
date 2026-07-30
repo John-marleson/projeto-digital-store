@@ -3,13 +3,13 @@ const { OpcoesProdutoModel } = require('../models/RelacionamentosModel')
 async function opcoesProdutosFindAll() {
     try {
         const dados = await OpcoesProdutos.findAll();
- 
+
         if (!dados) {
             return {
                 erro: 'Não foi possível listar as opções de produto'
             }
         }
- 
+
         return {
             dados: dados
         }
@@ -20,7 +20,7 @@ async function opcoesProdutosFindAll() {
         }
     }
 }
- 
+
 async function opcoesProdutosCreate(product_id, titulo, shape, radius, tipo, valoresProduto) {
     try {
         const opcaoCriada = await OpcoesProdutos.create({
@@ -31,13 +31,13 @@ async function opcoesProdutosCreate(product_id, titulo, shape, radius, tipo, val
             tipo: tipo,
             valoresProduto: valoresProduto
         });
- 
+
         if (!opcaoCriada) {
             return {
                 erro: 'Não foi possível criar a opção de produto'
             }
         }
- 
+
         return {
             dados: 'Opção de produto criada com sucesso'
         }
@@ -48,17 +48,17 @@ async function opcoesProdutosCreate(product_id, titulo, shape, radius, tipo, val
         }
     }
 }
- 
+
 async function opcoesProdutosUpdate(id, product_id, titulo, shape, radius, tipo, valoresProduto) {
     try {
         const opcaoPk = await OpcoesProdutos.findByPk(id);
- 
+
         if (!opcaoPk) {
             return {
                 erro: 'Opção de produto não encontrada'
             }
         }
- 
+
         const opcaoUpdate = await OpcoesProdutos.update({
             product_id: product_id,
             titulo: titulo,
@@ -67,8 +67,8 @@ async function opcoesProdutosUpdate(id, product_id, titulo, shape, radius, tipo,
             tipo: tipo,
             valoresProduto: valoresProduto
         },
-        { where: { id: id } });
- 
+            { where: { id: id } });
+
         return {
             dados: 'Opção de produto atualizada com sucesso'
         }
@@ -79,19 +79,19 @@ async function opcoesProdutosUpdate(id, product_id, titulo, shape, radius, tipo,
         }
     }
 }
- 
+
 async function opcoesProdutosDelete(id) {
     try {
         const opcaoPk = await OpcoesProdutos.findByPk(id);
- 
+
         if (!opcaoPk) {
             return {
                 erro: 'Opção de produto não encontrada'
             }
         }
- 
+
         const opcaoDelete = await OpcoesProdutos.destroy({ where: { id: id } });
- 
+
         return {
             dados: 'Opção de produto deletada com sucesso'
         }
@@ -102,7 +102,7 @@ async function opcoesProdutosDelete(id) {
         }
     }
 }
- 
+
 module.exports = {
     opcoesProdutosFindAll,
     opcoesProdutosCreate,

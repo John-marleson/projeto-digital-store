@@ -5,10 +5,10 @@ const usuarioController = require('../controller/usuariosController')
 const usuarioPostMiddleware = require('../middlewares/usuariosMiddlewares')
 const autenticacao = require('../middlewares/autenticacaoMiddleware')
 
-router.get('/usuarios/:id',(req, res) => usuarioController.usuariosGetById(req, res))
+router.get('/usuarios/:id', (req, res) => usuarioController.usuariosGetById(req, res))
 
 router.post('/usuarios',
-    autenticacao, 
+    autenticacao,
     usuarioPostMiddleware,
     (req, res) => usuarioController.usuarioPost(req, res))
 
